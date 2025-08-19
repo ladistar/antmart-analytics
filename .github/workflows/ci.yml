@@ -108,7 +108,7 @@ jobs:
           source .venv/bin/activate
           dbt docs generate --project-dir dbt --profiles-dir dbt
           mkdir -p public
-          cp -r target/* public/
+          cp -r dbt/target/* public/
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -116,7 +116,7 @@ jobs:
           path: |
             data/warehouse/*.duckdb
             artifacts/*.csv
-            target/
+            dbt/target/
             public/
 
   deploy-docs:
