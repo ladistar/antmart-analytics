@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+.env.*
+data/warehouse/
+airflow/logs/
+airflow/dags/__pycache__/
+*.duckdb
+.idea/
+.vscode/
+.DS_Store
+target/
+public/
+artifacts/
