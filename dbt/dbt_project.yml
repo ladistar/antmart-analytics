@@ -8,7 +8,7 @@ model-paths: ["models"]
 seed-paths: ["seeds"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
-data-paths: ["data"]
+# data-paths: ["data"]
 macro-paths: ["macros"]
 docs-paths: ["../docs"]
 
