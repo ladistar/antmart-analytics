@@ -33,6 +33,7 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Generate synthetic data
         run: |
@@ -64,16 +65,41 @@ jobs:
           db = os.getenv("DUCKDB_PATH", "data/warehouse/antmart.duckdb")
           con = duckdb.connect(db)
           os.makedirs("artifacts", exist_ok=True)
+      
+          # Build a view with order lines + prices
+          con.execute("""
+            create or replace temp view v_orders as
+            select
+              o.order_date,
+              o.product_id,
+              o.quantity,
+              p.price
+            from fct_orders o
+            join dim_product p
+              on o.product_id = p.product_id
+          """)
+      
+          # Daily revenue
           df = con.execute("""
-            select order_date, sum(revenue) as daily_revenue
-            from mart_metrics
-            group by 1 order by 1
+            select
+              order_date,
+              sum(quantity * price) as daily_revenue
+            from v_orders
+            group by 1
+            order by 1
           """).df()
           df.to_csv("artifacts/daily_revenue.csv", index=False)
+      
+          # Top products by revenue
           df2 = con.execute("""
-            select product_id, sum(quantity) as units, sum(revenue) as revenue
-            from mart_metrics
-            group by 1 order by revenue desc limit 10
+            select
+              product_id,
+              sum(quantity) as units,
+              sum(quantity * price) as revenue
+            from v_orders
+            group by 1
+            order by revenue desc
+            limit 10
           """).df()
           df2.to_csv("artifacts/top_products.csv", index=False)
           PY
