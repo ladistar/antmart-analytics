@@ -38,6 +38,8 @@ jobs:
         run: |
           source .venv/bin/activate
           python scripts/generate_synthetic.py
+      - name: Prepare warehouse directory
+        run: mkdir -p data/warehouse
       - name: dbt deps
         run: |
           source .venv/bin/activate
