@@ -1,0 +1,18 @@
+# Core dependencies
+pandas
+numpy
+faker
+streamlit
+duckdb
+pyyaml
+
+# dbt for transformations
+dbt-core
+dbt-duckdb
+
+# Orchestration
+apache-airflow
+
+# Optional: GA4 integration
+google-cloud-bigquery
+google-cloud-bigquery-storage

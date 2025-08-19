@@ -1,0 +1,25 @@
+name: antmart_analytics
+version: '1.0'
+config-version: 2
+
+profile: antmart_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+docs-paths: ["../docs"]
+
+models:
+  antmart_analytics:
+    +materialized: table
+    staging:
+      +materialized: table
+    dims:
+      +materialized: incremental
+    facts:
+      +materialized: incremental
+    marts:
+      +materialized: table

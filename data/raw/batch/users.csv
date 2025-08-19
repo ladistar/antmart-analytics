@@ -1,0 +1,11 @@
+user_id,email,signup_date,plan_tier,region
+1,user1@example.com,2024-12-25,free,NA
+2,user2@example.com,2025-03-05,premium,APAC
+3,user3@example.com,2024-12-09,basic,NA
+4,user4@example.com,2025-03-04,free,NA
+5,user5@example.com,2025-02-18,basic,APAC
+6,user6@example.com,2025-02-23,basic,EU
+7,user7@example.com,2024-11-30,premium,NA
+8,user8@example.com,2025-08-01,premium,NA
+9,user9@example.com,2024-11-01,basic,NA
+10,user10@example.com,2024-09-01,basic,APAC

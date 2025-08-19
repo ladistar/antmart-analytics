@@ -1,0 +1,9 @@
+antmart_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      # Use the DUCKDB_PATH environment variable if available; default to a file in data/warehouse
+      path: "{{ env_var('DUCKDB_PATH', 'data/warehouse/antmart.duckdb') }}"
+      threads: 4
+      schema: main

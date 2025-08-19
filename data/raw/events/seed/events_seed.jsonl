@@ -1,0 +1,30 @@
+{"event_type": "checkout_start", "user_id": 10, "product_id": 1, "cart_id": "C3", "timestamp": "2025-08-17T22:04:27"}
+{"event_type": "add_to_cart", "user_id": 5, "product_id": 3, "cart_id": "C18", "timestamp": "2025-08-18T02:54:27"}
+{"event_type": "page_view", "user_id": 7, "product_id": 1, "timestamp": "2025-08-18T06:11:27"}
+{"event_type": "purchase", "user_id": 4, "product_id": 2, "cart_id": "C9", "timestamp": "2025-08-18T04:40:27"}
+{"event_type": "page_view", "user_id": 6, "product_id": 2, "timestamp": "2025-08-18T12:10:27"}
+{"event_type": "add_to_cart", "user_id": 1, "product_id": 2, "cart_id": "C9", "timestamp": "2025-08-18T11:41:27"}
+{"event_type": "page_view", "user_id": 8, "product_id": 5, "timestamp": "2025-08-18T18:51:27"}
+{"event_type": "page_view", "user_id": 8, "product_id": 4, "timestamp": "2025-08-18T01:44:27"}
+{"event_type": "add_to_cart", "user_id": 10, "product_id": 4, "cart_id": "C2", "timestamp": "2025-08-18T09:47:27"}
+{"event_type": "add_to_cart", "user_id": 3, "product_id": 2, "cart_id": "C11", "timestamp": "2025-08-18T15:18:27"}
+{"event_type": "add_to_cart", "user_id": 8, "product_id": 4, "cart_id": "C8", "timestamp": "2025-08-17T21:30:27"}
+{"event_type": "checkout_start", "user_id": 3, "product_id": 4, "cart_id": "C8", "timestamp": "2025-08-17T22:55:27"}
+{"event_type": "checkout_start", "user_id": 1, "product_id": 2, "cart_id": "C3", "timestamp": "2025-08-17T22:23:27"}
+{"event_type": "checkout_start", "user_id": 8, "product_id": 4, "cart_id": "C2", "timestamp": "2025-08-18T13:25:27"}
+{"event_type": "page_view", "user_id": 10, "product_id": 5, "timestamp": "2025-08-18T08:03:27"}
+{"event_type": "page_view", "user_id": 6, "product_id": 3, "timestamp": "2025-08-17T22:06:27"}
+{"event_type": "add_to_cart", "user_id": 8, "product_id": 1, "cart_id": "C10", "timestamp": "2025-08-18T04:37:27"}
+{"event_type": "add_to_cart", "user_id": 8, "product_id": 4, "cart_id": "C10", "timestamp": "2025-08-18T12:18:27"}
+{"event_type": "add_to_cart", "user_id": 2, "product_id": 1, "cart_id": "C9", "timestamp": "2025-08-17T23:47:27"}
+{"event_type": "checkout_start", "user_id": 9, "product_id": 2, "cart_id": "C20", "timestamp": "2025-08-17T22:07:27"}
+{"event_type": "page_view", "user_id": 5, "product_id": 5, "timestamp": "2025-08-18T07:19:27"}
+{"event_type": "add_to_cart", "user_id": 7, "product_id": 5, "cart_id": "C15", "timestamp": "2025-08-18T11:16:27"}
+{"event_type": "checkout_start", "user_id": 7, "product_id": 2, "cart_id": "C12", "timestamp": "2025-08-18T12:06:27"}
+{"event_type": "purchase", "user_id": 8, "product_id": 4, "cart_id": "C9", "timestamp": "2025-08-18T04:50:27"}
+{"event_type": "add_to_cart", "user_id": 9, "product_id": 5, "cart_id": "C10", "timestamp": "2025-08-18T07:50:27"}
+{"event_type": "add_to_cart", "user_id": 6, "product_id": 3, "cart_id": "C12", "timestamp": "2025-08-18T16:23:27"}
+{"event_type": "add_to_cart", "user_id": 2, "product_id": 5, "cart_id": "C5", "timestamp": "2025-08-18T08:35:27"}
+{"event_type": "checkout_start", "user_id": 10, "product_id": 1, "cart_id": "C3", "timestamp": "2025-08-18T03:02:27"}
+{"event_type": "add_to_cart", "user_id": 7, "product_id": 5, "cart_id": "C8", "timestamp": "2025-08-18T12:29:27"}
+{"event_type": "checkout_start", "user_id": 7, "product_id": 5, "cart_id": "C10", "timestamp": "2025-08-18T00:51:27"}
