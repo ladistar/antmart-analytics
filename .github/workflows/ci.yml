@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUNBUFFERED: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      DUCKDB_PATH: data/warehouse/antmart_ci.duckdb
+      DATA_SOURCE: synthetic
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install deps
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+      - name: Generate synthetic data
+        run: |
+          source .venv/bin/activate
+          python scripts/generate_synthetic.py
+      - name: dbt deps
+        run: |
+          source .venv/bin/activate
+          dbt deps --project-dir dbt --profiles-dir dbt
+      - name: dbt run
+        run: |
+          source .venv/bin/activate
+          dbt run --project-dir dbt --profiles-dir dbt
+      - name: dbt test
+        run: |
+          source .venv/bin/activate
+          dbt test --project-dir dbt --profiles-dir dbt
+      - name: Export quick KPIs (CSV via duckdb)
+        run: |
+          source .venv/bin/activate
+          python - <<'PY'
+          import duckdb, os, pandas as pd
+          db = os.getenv("DUCKDB_PATH", "data/warehouse/antmart.duckdb")
+          con = duckdb.connect(db)
+          os.makedirs("artifacts", exist_ok=True)
+          df = con.execute("""
+            select order_date, sum(revenue) as daily_revenue
+            from mart_metrics
+            group by 1 order by 1
+          """).df()
+          df.to_csv("artifacts/daily_revenue.csv", index=False)
+          df2 = con.execute("""
+            select product_id, sum(quantity) as units, sum(revenue) as revenue
+            from mart_metrics
+            group by 1 order by revenue desc limit 10
+          """).df()
+          df2.to_csv("artifacts/top_products.csv", index=False)
+          PY
+      - name: dbt docs generate
+        run: |
+          source .venv/bin/activate
+          dbt docs generate --project-dir dbt --profiles-dir dbt
+          mkdir -p public
+          cp -r target/* public/
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: antmart-ci-artifacts
+          path: |
+            data/warehouse/*.duckdb
+            artifacts/*.csv
+            target/
+            public/
+
+  deploy-docs:
+    needs: build-and-test
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download site
+        uses: actions/download-artifact@v4
+        with:
+          name: antmart-ci-artifacts
+          path: .
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
