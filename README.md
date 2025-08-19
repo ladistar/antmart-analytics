@@ -1,6 +1,6 @@
 # AntMart Analytics (CI-First
 
-**Docs:** https://ladistar.github.io/antmart-analytics/
+**Live Docs:** https://ladistar.github.io/antmart-analytics/
 ![CI](https://github.com/ladistar/antmart-analytics/actions/workflows/ci.yml/badge.svg)
 
 **AntMart** is a CI-first, portfolio-grade **e-commerce analytics** project. Every push runs a full ELT in **GitHub Actions** (no local installs):
